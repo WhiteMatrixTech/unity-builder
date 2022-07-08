@@ -54,6 +54,15 @@ if [[ -n "$UNITY_LICENSE" ]] || [[ -n "$UNITY_LICENSE_FILE" ]]; then
   rm -f $FILE_PATH
 
 elif [[ -n "$UNITY_SERIAL" && -n "$UNITY_EMAIL" && -n "$UNITY_PASSWORD" ]]; then
+
+  echo "Return activation (professional license)"
+  unity-editor \
+    -logFile /dev/stdout \
+    -batchmode \
+    -quit \
+    -username "$UNITY_EMAIL" \
+    -password "$UNITY_PASSWORD"
+
   #
   # PROFESSIONAL (SERIAL) LICENSE MODE
   #
@@ -66,6 +75,7 @@ elif [[ -n "$UNITY_SERIAL" && -n "$UNITY_EMAIL" && -n "$UNITY_PASSWORD" ]]; then
   # Activate license
   unity-editor \
     -logFile /dev/stdout \
+    -batchmode \
     -quit \
     -serial "$UNITY_SERIAL" \
     -username "$UNITY_EMAIL" \
